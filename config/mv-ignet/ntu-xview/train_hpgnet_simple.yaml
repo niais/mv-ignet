@@ -1,0 +1,53 @@
+work_dir: ./work_dir/recognition/ntu-xview/HPGNetFusion
+
+# feeder
+feeder: feeder.NTUDatasets.SimpleLoader
+train_feeder_args:
+  data_path: ./dataset/NTU-60/xview/train_data.npy
+  label_path: ./dataset/NTU-60/xview/train_label.npy
+  data_type: 'relative'
+  t_length: 200
+  y_rotation: True
+  displacement: 1
+  sampling: 'resize'
+  mmap: False
+
+test_feeder_args:
+  data_path: ./dataset/NTU-60/xview/val_data.npy
+  label_path: ./dataset/NTU-60/xview/val_label.npy
+  data_type: 'relative'
+  t_length: 200
+  y_rotation: True
+  displacement: 1
+  sampling: 'resize'
+  mmap: False
+
+# model
+model: net.HPGNet.ModelFusion
+model_args:
+  in_channels: 3
+  num_class: 60
+  dropout: 0.3
+  dilation: 1
+  in_plane: 64
+  # topology: 'complement'
+  topology: 'physical'
+  group_num: 5
+  graph_args:
+    layout: 'ntu-rgb+d'
+    strategy: 'uniform'
+    graph_type: 'undigraph'
+
+#optim
+phase: 'train'
+weight_decay: 0.0001
+base_lr: 0.2
+step: [30, 50, 70]
+
+# training
+device: [0, 1]
+batch_size: 128
+test_batch_size: 128
+num_epoch: 90
+save_interval: 1
+eval_interval: 1

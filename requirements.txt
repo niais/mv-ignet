@@ -1,0 +1,6 @@
+opencv_python
+tqdm
+numpy
+h5py
+PyYAML
+tensorboardX
