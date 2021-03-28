@@ -127,8 +127,8 @@ We only test our code on the following environment:
     │    ├── xsub_HPGNet_epoch120_model.pt
     │    └── xsub_HPGNet-complement_epoch120_model.pt
     └── xview
-         ├── xsub_HPGNet_epoch120_model.pt
-         └── xsub_HPGNet-complement_epoch120_model.pt
+         ├── xview_HPGNet_epoch120_model.pt
+         └── xview_HPGNet-complement_epoch120_model.pt
   ```
 
 ## Evaluation
